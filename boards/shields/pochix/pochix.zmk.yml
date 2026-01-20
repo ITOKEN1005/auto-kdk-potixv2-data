@@ -1,0 +1,14 @@
+
+file_format: "1"
+id: pochix
+name: pochix
+type: shield
+features:
+  - keys
+  - studio
+outputs:
+  - usb
+  - ble
+siblings:
+  - pochix_left
+  - pochix_right

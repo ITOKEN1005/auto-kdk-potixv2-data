@@ -1,0 +1,14 @@
+
+if SHIELD_POCHIX_RIGHT
+
+config ZMK_KEYBOARD_NAME
+    default "pochix"
+
+endif
+
+if SHIELD_POCHIX_LEFT || SHIELD_POCHIX_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif
