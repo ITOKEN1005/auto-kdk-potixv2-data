@@ -1,8 +1,4 @@
 
 include:
-  - board: akdk_bt1
-    shield: pochix_left
-  - board: akdk_bt1
-    shield: pochix_right
-  - board: akdk_bt1
+  - board: nice_nano_v2
     shield: settings_reset
