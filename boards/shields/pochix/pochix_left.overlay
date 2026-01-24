@@ -90,34 +90,11 @@
         compatible = "azoteq,iqs7211e";
         reg = <0x56>;
         irq-gpios = <&gpio0 13 GPIO_PULL_UP>; 
-    };
-};
+/* --- ここから追加・調整 --- */
+        /* スクロールの感度（しきい値）: 小さくすると少しの動きでスクロールします */
+        scroll-sensitivity = <100>; 
 
-/ {
-    /* 1. 垂直スクロール用のスケーラー */
-    scr_scaler_vert: scr_scaler_vert {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-        type = <INPUT_REL_WHEEL>;
-        codes = <INPUT_REL_WHEEL>; // これが必要です
-    };
-
-    /* 2. 水平スクロール用のスケーラー */
-    scr_scaler_horz: scr_scaler_horz {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-        type = <INPUT_REL_HWHEEL>;
-        codes = <INPUT_REL_HWHEEL>; // これが必要です
-    };
-
-    trackpad_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackpad>;
-
-        input-processors = 
-            /* 垂直スクロール: 2倍 (速くしたい場合は分子の2を増やす) */
-            <&scr_scaler_vert 1 2>, 
-            /* 水平スクロール: 2倍 */
-            <&scr_scaler_horz 1 2>;
+        /* マウスカーソルの感度も変えたい場合はここ */
+        /* sensitivity = <50>; */
     };
 };
