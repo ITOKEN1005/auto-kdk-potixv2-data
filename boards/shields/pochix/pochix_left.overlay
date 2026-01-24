@@ -93,3 +93,25 @@
     };
 };
 
+/ {
+    /* 1. スクロール用のスケーラーを定義 */
+    scr_scaler: scr_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <INPUT_REL_WHEEL>; // スクロール信号(垂直)を対象にする
+    };
+
+    /* 2. トラックパッドの信号をキャッチして処理するリスナー */
+    trackpad_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackpad>;
+
+        input-processors = 
+            /* スクロール速度を 2倍にする設定 (分子=2, 分母=1) */
+            /* 逆に遅くしたい場合は <1 2> (0.5倍) などに調整してください */
+            <&scr_scaler 1 2>, 
+            
+            /* 横スクロールも調整したい場合は以下を追加 */
+            <&scr_scaler 1 2>; 
+    };
+};
