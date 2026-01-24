@@ -21,8 +21,8 @@
     /* 分割入力経由の信号をキャッチして増幅 */
     trackpad_listener {
         compatible = "zmk,input-listener";
-        device = <&trackpad_split>; // ここを _split にするのがポイントです
-        input-processors = <&tp_scaler 10 1>; // 一旦「10倍」で変化が出るか確認
+        device = <&trackpad>; // _split を取って、生デバイスを直接指定
+        input-processors = <&tp_scaler 20 1>; // 変化を見るためあえて20倍
     };
     /* -------------------------------------- */
 
