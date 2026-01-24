@@ -9,6 +9,23 @@
         zmk,physical-layout = &physical_layout0;
     };
 
+/* --- スクロール速度調整用の設定を追加 --- */
+    /* 全ての相対移動信号（X, Y, Wheel）を10倍にするスケーラー */
+    tp_scaler: tp_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <INPUT_REL_X>; 
+        codes = <INPUT_REL_X INPUT_REL_Y INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+    };
+
+    /* 分割入力経由の信号をキャッチして増幅 */
+    trackpad_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackpad_split>; // ここを _split にするのがポイントです
+        input-processors = <&tp_scaler 10 1>; // 一旦「10倍」で変化が出るか確認
+    };
+    /* -------------------------------------- */
+
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <10>;
@@ -90,11 +107,5 @@
         compatible = "azoteq,iqs7211e";
         reg = <0x56>;
         irq-gpios = <&gpio0 13 GPIO_PULL_UP>; 
-/* --- ここから追加・調整 --- */
-        /* スクロールの感度（しきい値）: 小さくすると少しの動きでスクロールします */
-        scroll-sensitivity = <100>; 
-
-        /* マウスカーソルの感度も変えたい場合はここ */
-        /* sensitivity = <50>; */
     };
 };
