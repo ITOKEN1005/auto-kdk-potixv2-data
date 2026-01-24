@@ -65,7 +65,7 @@
             compatible = "zmk,input-split";
             reg = <0>;
             device = <&trackpad>;
-        };
+            input-processors = <&tp_scaler 20 1>;
     };
 };
 
