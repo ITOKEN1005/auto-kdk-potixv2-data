@@ -1,0 +1,8 @@
+--- a/src/iqs7211e.c
++++ b/src/iqs7211e.c
+@@ -919,7 +919,7 @@
+     data->dev = dev;
+     data->sensitivity = 16;
+-    data->scr_om_count = 12;
++    data->scr_om_count = 48; // デフォルトの12から48に変更（4倍遅くする）
+     data->scr_om_low_power = 24;
