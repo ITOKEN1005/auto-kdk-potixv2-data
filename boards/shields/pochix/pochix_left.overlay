@@ -9,13 +9,20 @@
         zmk,physical-layout = &physical_layout0;
     };
 
-    /* 1. 信号を増幅するスケーラーの定義 */
-    /* typeを広汎なREL（相対移動）に、codesを全軸に指定 */
+    /* 1. スケーラーの定義（20倍速設定） */
     tp_scaler: tp_scaler {
         compatible = "zmk,input-processor-scaler";
         #input-processor-cells = <2>;
         type = <INPUT_REL_X>;
         codes = <INPUT_REL_X INPUT_REL_Y INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+    };
+
+    /* 2. リスナーをルート直下に配置 */
+    /* device = <&trackpad> を指定しつつ、ドライバプロパティは汚さない */
+    trackpad_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackpad>;
+        input-processors = <&tp_scaler 20 1>;
     };
 
     default_transform: keymap_transform_0 {
@@ -98,9 +105,6 @@
         compatible = "azoteq,iqs7211e";
         reg = <0x56>;
         irq-gpios = <&gpio0 13 GPIO_PULL_UP>; 
-        
-        /* 2. ドライバノードに直接プロセッサを紐付ける */
-        /* これにより、分割通信(split)に渡される前の生データを加工します */
-        input-processors = <&tp_scaler 20 1>;
+        /* ここには input-processors を書かない */
     };
 };
