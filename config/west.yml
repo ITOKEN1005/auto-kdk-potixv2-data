@@ -4,7 +4,9 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: sekigon-gonnoc
       url-base: https://github.com/sekigon-gonnoc
-  projects:
+    - name: ITOKEN1005
+      url-base: https://github.com/ITOKEN1005
+projects:
     - name: zmk
       remote: zmkfirmware
       revision: v0.2
