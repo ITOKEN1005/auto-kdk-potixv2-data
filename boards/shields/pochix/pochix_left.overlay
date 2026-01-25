@@ -9,20 +9,19 @@
         zmk,physical-layout = &physical_layout0;
     };
 
-    /* 1. スケーラーの定義（20倍） */
+    /* 1. テストのため、あえて「100分の1」の速度に設定 */
+    /* これでスクロールがほぼ反応しなくなれば、設定は生きています */
     tp_scaler: tp_scaler {
         compatible = "zmk,input-processor-scaler";
         #input-processor-cells = <2>;
-        type = <INPUT_REL_X>;
-        codes = <INPUT_REL_X INPUT_REL_Y INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+        type = <INPUT_REL_WHEEL>;
+        codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL INPUT_REL_X INPUT_REL_Y>;
     };
 
-    /* 2. トラックパッドの信号を「出力直前」で捕まえるリスナー */
-    /* device = <&trackpad> ではなく、OSへ渡す一歩手前の <&trackpad_split> をターゲットにします */
     trackpad_listener {
         compatible = "zmk,input-listener";
         device = <&trackpad_split>;
-        input-processors = <&tp_scaler 20 1>;
+        input-processors = <&tp_scaler 1 100>; // 1/100倍速
     };
 
     default_transform: keymap_transform_0 {
