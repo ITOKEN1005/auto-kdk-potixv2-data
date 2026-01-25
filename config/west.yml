@@ -8,6 +8,10 @@ manifest:
       url-base: https://github.com/ITOKEN1005
 
   projects:
+    # 順番を入れ替え、直接URLを指定して優先度を上げる
+    - name: zmk-driver-iqs7211e
+      url: https://github.com/ITOKEN1005/zmk-driver-iqs7211e
+      revision: master 
     - name: zmk
       remote: zmkfirmware
       revision: v0.2
@@ -15,9 +19,6 @@ manifest:
     - name: zmk-driver-paw3222
       remote: sekigon-gonnoc
       revision: main
-    - name: zmk-driver-iqs7211e
-      remote: ITOKEN1005
-      revision: master
 
   self:
     path: config
