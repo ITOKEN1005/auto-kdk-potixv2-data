@@ -6,7 +6,8 @@ manifest:
       url-base: https://github.com/sekigon-gonnoc
     - name: ITOKEN1005
       url-base: https://github.com/ITOKEN1005
-projects:
+
+  projects:
     - name: zmk
       remote: zmkfirmware
       revision: v0.2
@@ -16,5 +17,7 @@ projects:
       revision: main
     - name: zmk-driver-iqs7211e
       remote: ITOKEN1005
+      revision: master
+
   self:
     path: config
