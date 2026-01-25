@@ -1,28 +1,10 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <input/processors.dtsi>
-#include <dt-bindings/zmk/input_transform.h>
 #include "layouts.dtsi"
 
 / {
     chosen {
         zmk,physical-layout = &physical_layout0;
-    };
-
-    /* 1. スケーラーの定義（20倍速設定） */
-    tp_scaler: tp_scaler {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-        type = <INPUT_REL_X>;
-        codes = <INPUT_REL_X INPUT_REL_Y INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
-    };
-
-    /* 2. リスナーをルート直下に配置 */
-    /* device = <&trackpad> を指定しつつ、ドライバプロパティは汚さない */
-    trackpad_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackpad>;
-        input-processors = <&tp_scaler 20 1>;
     };
 
     default_transform: keymap_transform_0 {
@@ -67,30 +49,6 @@
     };
 };
 
-&physical_layout0 {
-    kscan = <&kscan0>;
-    transform = <&default_transform>;
-};
-
-&pinctrl {
-    i2c0_default: i2c0_default {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 12)>,
-                    <NRF_PSEL(TWIM_SCL, 1, 9)>;
-            bias-pull-up;
-        };
-    };
-
-    i2c0_sleep: i2c0_sleep {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 12)>,
-                    <NRF_PSEL(TWIM_SCL, 1, 9)>;
-            bias-pull-up;
-            low-power-enable;
-        };
-    };
-};
-
 &i2c0 {
     status = "okay";
     compatible = "nordic,nrf-twim";
@@ -105,6 +63,11 @@
         compatible = "azoteq,iqs7211e";
         reg = <0x56>;
         irq-gpios = <&gpio0 13 GPIO_PULL_UP>; 
-        /* ここには input-processors を書かない */
+        
+        /* スクロールの物理感度を極限まで上げる設定 */
+        scr-om-count = <2>; 
+        scr-om-low-power = <2>;
     };
 };
+
+/* pinctrl等は既存のまま */
