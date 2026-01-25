@@ -4,10 +4,6 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: sekigon-gonnoc
       url-base: https://github.com/sekigon-gonnoc
-    # 1. あなたのGitHubアカウントをリモートに追加
-    - name: ITOKEN1005
-      url-base: https://github.com/ITOKEN1005
-
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -16,10 +12,7 @@ manifest:
     - name: zmk-driver-paw3222
       remote: sekigon-gonnoc
       revision: main
-    # 2. リモートを your-username に変更し、revision を指定
     - name: zmk-driver-iqs7211e
-      remote: ITOKEN1005
-      revision: master
-
+      remote: sekigon-gonnoc
   self:
     path: config
