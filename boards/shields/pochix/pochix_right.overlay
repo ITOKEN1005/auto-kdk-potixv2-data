@@ -75,7 +75,7 @@
         device = <&trackpad_split>;   
         status = "okay";
         // 速度を大幅に抑える設定です。まだ早い場合は 20 を 40 や 60 に増やしてください。
-        input-processors = <&zip_scroll_scaler 1 20>;
+        input-processors = <&zip_scroll_scaler 1 60>;
     };
 };
 
