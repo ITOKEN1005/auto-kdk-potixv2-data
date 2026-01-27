@@ -40,16 +40,6 @@
             ;
     };
 
-    // トラックパッドの感度・挙動を制御するリスナー
-    trackpad_listener: trackpad_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackpad>;
-        
-        input-processors = 
-            // スクロールの感度調整（1 5 の '5' を増やすと遅く、減らすと速くなります）
-            <&zip_scroll_scaler 1 5>;
-    };
-
     split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;
