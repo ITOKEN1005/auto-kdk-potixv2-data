@@ -74,8 +74,7 @@
         compatible = "zmk,input-listener";
         device = <&trackpad_split>;   
         status = "okay";
-        // scaler を 1 1 (等倍) にすることで、指の動きをダイレクトに反映させます
-        input-processors = <&zip_scroll_scaler 1 1>;
+        // 余計な処理を一切挟まない設定です
     };
 };
 
