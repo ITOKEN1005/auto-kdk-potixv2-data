@@ -52,7 +52,7 @@
 
         automouse {
             layers = <0>;           // 通常レイヤー(0)にいる時に発動
-            activate-layer = <4>;   // Layer 4 を起動
+            layer = <4>;   // Layer 4 を起動
             timeout-ms = <1000>;    // 1秒操作がない、またはキー入力で解除
         };
 
