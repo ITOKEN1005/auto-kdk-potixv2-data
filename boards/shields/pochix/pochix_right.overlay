@@ -74,7 +74,8 @@
         compatible = "zmk,input-listener";
         device = <&trackpad_split>;   
         status = "okay";
-        // 余計な処理を一切挟まない設定です
+        // ★ ここで速度を遅く調整。3を大きくするとより遅くなります。
+        input-processors = <&zip_scroll_scaler 1 3>;
     };
 };
 
