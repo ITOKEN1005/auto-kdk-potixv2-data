@@ -50,11 +50,9 @@
             <&zip_x_scaler 3 5>, 
             <&zip_y_scaler 9 10>;
 
-        automouse {
-            layers = <0>;           // 通常レイヤー(0)にいる時に発動
-            layer = <4>;   // Layer 4 を起動
-            timeout-ms = <1000>;    // 1秒操作がない、またはキー入力で解除
-        };
+        // ★ automouse ブロックの代わりに、ここに直接記述します
+            // 第1引数: レイヤー番号(4), 第2引数: タイムアウト(1000ms)
+            <&zip_temp_layer 4 1000>;
 
         scroller {
             layers = <3>;
