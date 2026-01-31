@@ -60,4 +60,5 @@
                 &trans &trans &trans &trans
             >;
         };
-};
+    }; // keymap を閉じる
+}; // ルート / を閉じる
