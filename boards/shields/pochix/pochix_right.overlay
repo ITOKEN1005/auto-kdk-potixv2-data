@@ -59,6 +59,15 @@
                 <&zip_scroll_scaler 1 64>;
             process-next;
         };
+
+// ★ジェスチャー用（Layer 5）
+        // 引数「0」は、そのレイヤーの0,1,2,3番目のキー(順に左/右/上/下)を叩くという意味です
+        gesture_scroller {
+            layers = <5>;
+            input-processors = 
+                <&zip_xy_to_scroll_mapper 0>, 
+                <&zip_scroll_scaler 1 40>;
+        };
     };
 
     split_inputs {
