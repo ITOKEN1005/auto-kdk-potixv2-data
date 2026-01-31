@@ -41,7 +41,7 @@
             ;
     };
 
-    trackball_listener: trackball_listener {
+trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
         
@@ -60,11 +60,10 @@
             process-next;
         };
 
-// ★ジェスチャー用（Layer 5）修正版
         gesture_scroller {
             layers = <5>;
             input-processors = 
-                <&zip_xy_to_scroll_mapper>, // 引数 0 を削除
+                <&zip_xy_to_scroll_mapper>, 
                 <&zip_scroll_scaler 1 40>;
         };
     };
@@ -82,7 +81,6 @@
         compatible = "zmk,input-listener";
         device = <&trackpad_split>;   
         status = "okay";
-        // 速度を大幅に抑える設定です。まだ早い場合は 20 を 40 や 60 に増やしてください。
         input-processors = <&zip_scroll_scaler 1 60>;
     };
 };
