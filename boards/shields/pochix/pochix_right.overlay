@@ -50,20 +50,22 @@
             <&zip_y_scaler 9 10>,
             <&zip_temp_layer 4 2000>;
 
+        /* 優先度1: ジェスチャー用 (Layer 5) */
+        /* 先に記述することで、スクロール設定より先に判定させます */
+        gesture_scroller {
+            layers = <5>;
+            input-processors = 
+                <&zip_xy_to_scroll_mapper>, 
+                <&zip_scroll_scaler 1 40>;
+        };
+
+        /* 優先度2: 通常スクロール用 (Layer 3) */
         scroller {
             layers = <3>;
             input-processors = 
                 <&zip_xy_to_scroll_mapper>, 
                 <&zip_scroll_transform (INPUT_TRANSFORM_X_INVERT)>, 
                 <&zip_scroll_scaler 1 64>;
-            process-next;
-        };
-
-        gesture_scroller {
-            layers = <5>;
-            input-processors = 
-                <&zip_xy_to_scroll_mapper>, 
-                <&zip_scroll_scaler 1 40>;
         };
     };
 
@@ -96,31 +98,3 @@
                     <NRF_PSEL(SPIM_MOSI, 1, 9)>,
                     <NRF_PSEL(SPIM_MISO, 1, 9)>;
         };
-    };
-
-    spi0_sleep: spi0_sleep {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 12)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 9)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 9)>;
-            low-power-enable;
-        };
-    };
-};
-
-&spi0 {
-    status = "okay";
-    compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
-    pinctrl-names = "default", "sleep";
-    cs-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
-
-    trackball: trackball@0 {
-        status = "okay";
-        compatible = "pixart,paw3222";
-        reg = <0>;
-        spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-    };
-};
