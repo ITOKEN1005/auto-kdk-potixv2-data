@@ -4,15 +4,6 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
-    /* スクロール（マウスホイール）の動きをキー入力に変換する定義 */
-    behaviors {
-        hwl_key: hwl_key {
-            compatible = "zmk,behavior-scroll-to-key";
-            #binding-cells = <1>;
-            bindings = <&kp>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -61,11 +52,10 @@
             >;
         };
 
-        /* ジェスチャーレイヤー：スクロール入力をキー入力（LA(LEFT)/LA(RIGHT)）に変換 */
         layer_5 {
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &hwl_key LA(LEFT) &hwl_key LA(RIGHT) &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans
             >;
