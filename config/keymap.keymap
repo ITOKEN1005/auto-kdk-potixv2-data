@@ -54,10 +54,11 @@
             >;
         };
 
+        /* Layer 5: スクロール（ボールの動き）がこの座標のキーを叩くように構成 */
         layer_5 {
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &kp LA(LEFT) &kp LA(RIGHT) &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans
             >;
