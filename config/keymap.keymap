@@ -61,7 +61,7 @@
             >;
         };
 
-        /* Layer 5: スクロール（ボールの動き）がこの座標のキーを叩くように構成 */
+        /* Layer 5: Mac用ジェスチャーレイヤー */
         layer_5 {
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
@@ -69,6 +69,8 @@
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans
             >;
+            /* ボールの入力をセンサーとして扱い、左右に割り当てたキーを叩かせる */
+            sensor-bindings = <&m_key>;
         };
     };
 };
