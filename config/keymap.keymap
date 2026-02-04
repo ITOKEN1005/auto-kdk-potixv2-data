@@ -2,10 +2,17 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/pointing.h>
-/* スクロール方向をキーに変換するための定数 (v0.2互換) */
-#define ZMK_MOUSE_SCRL_VAL 140
 
 / {
+    /* マウスの移動をキー入力に変換するための挙動を定義 */
+    behaviors {
+        m_key: mouse_move_to_key {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&kp LG(LEFT)>, <&kp LG(RIGHT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
