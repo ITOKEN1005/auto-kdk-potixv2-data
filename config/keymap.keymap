@@ -3,17 +3,50 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/pointing.h>
 
+// レイヤー名の定義
+#define L0  0 //Mac用ベースレイヤー
+#define L1  1
+#define L2  2 //Windows用ベースレイヤー
+#define L3  3
+#define L4  4 //テンキーレイヤー
+#define L5  5 //記号レイヤー
+#define L6  6 //マウスレイヤー
 / {
-    
+    macros {
+        // BT 0番を選択し、Macレイヤーへ切り替え
+        sel_mac: sel_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0>, <&to L0>;
+        };
+
+
+        // BT 1番を選択し、Macレイヤーへ切り替え
+        sel_mac: sel_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1>, <&to L0>;
+        };
+
+       
+        // BT 2番を選択し、Windowsレイヤーへ切り替え
+        sel_win: sel_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1>, <&to WIN>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
+        // Layer 0: Macベース
         layer_0 {
             bindings = <
                 &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
                 &kp A &kp S &kp D &kp F &kp G &kp H &kp J &kp K &kp L &kp ENTER
-                &mt LSHIFT Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &lt 3 MINUS
-                &mt LCTRL LANG1 &lt 2 SPACE &lt 1 BACKSPACE &lt 5 LANG2
+                &mt LSHIFT Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &lt L3 MINUS
+                &mt LCMD LANG1 &lt L2 SPACE &lt L1 BACKSPACE &lt L5 LANG2
             >;
         };
 
@@ -35,30 +68,31 @@
             >;
         };
 
+        // Layer 3: 設定・BT切り替え
         layer_3 {
             bindings = <
-                &none &none &none &none &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+                &none &none &none &none &none &sel_mac &sel_win &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
                 &none &none &none &none &none &bt BT_CLR &none &none &none &none
                 &none &none &none &none &none &none &none &none &none &none
                 &none &none &none &none
             >;
         };
 
+        // Layer 4: Windowsベース (Mac用のLCMDをLWIN/LCTRLに変更)
         layer_4 {
             bindings = <
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &mkp LCLK &mkp RCLK &trans
-                &to 0 &trans &trans &to 0
+                &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
+                &kp A &kp S &kp D &kp F &kp G &kp H &kp J &kp K &kp L &kp ENTER
+                &mt LSHIFT Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &lt L3 MINUS
+                &mt LCTRL MHEN &lt L2 SPACE &lt L1 BACKSPACE &lt L5 HENK
             >;
         };
 
-       
         layer_5 {
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &kp LG(LEFT) &kp LG(RIGHT) &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &mkp LCLK &mkp RCLK &trans
                 &trans &trans &trans &trans
             >;
         };
