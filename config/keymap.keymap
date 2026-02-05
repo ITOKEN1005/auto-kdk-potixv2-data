@@ -4,15 +4,7 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
-    /* マウスの移動をキー入力に変換するための挙動を定義 */
-    behaviors {
-        m_key: mouse_move_to_key {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&kp LG(LEFT)>, <&kp LG(RIGHT)>;
-        };
-    };
-
+    
     keymap {
         compatible = "zmk,keymap";
 
@@ -61,7 +53,7 @@
             >;
         };
 
-        /* Layer 5: Mac用ジェスチャーレイヤー */
+       
         layer_5 {
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
@@ -69,8 +61,6 @@
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans
             >;
-            /* ボールの入力をセンサーとして扱い、左右に割り当てたキーを叩かせる */
-            sensor-bindings = <&m_key>;
         };
     };
 };
