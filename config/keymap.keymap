@@ -8,13 +8,13 @@
         my_sel_mac: my_sel_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &bt BT_SEL 0>, <&macro_tap &to L0>;
+            bindings = <&macro_tap &bt BT_SEL 0 &macro_tap &to L0>;
         };
 
         my_sel_win: my_sel_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &bt BT_SEL 2>, <&macro_tap &to L2>;
+            bindings = <&macro_tap &bt BT_SEL 2 &macro_tap &to L2>;
         };
     };
 
@@ -40,16 +40,17 @@
             >;
         };
 
+        // Layer 2: Windowsベース
         layer_2 {
             bindings = <
-                &kp ESCAPE &none &none &none &none &none &none &kp UP_ARROW &none &none
-                &kp LA(TAB) &none &none &none &none &none &kp LEFT_ARROW &none &kp RIGHT_ARROW &none
-                &none &none &none &none &none &none &none &kp DOWN_ARROW &none &none
-                &none &none &none &none
+                &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
+                &kp A &kp S &kp D &kp F &kp G &kp H &kp J &kp K &kp L &kp ENTER
+                &mt LSHIFT Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &lt L3 MINUS
+                &mt LCTRL LANG1 &lt L2 SPACE &lt L1 BACKSPACE &lt L5 LANG2
             >;
         };
 
-        // Layer 3: 設定・BT切り替え
+         // Layer 3: 設定・BT切り替え
         layer_3 {
             bindings = <
                 &none &none &none &none &none &my_sel_mac &bt BT_SEL 1 &my_sel_win &bt BT_SEL 3 &bt BT_SEL 4
