@@ -26,12 +26,20 @@
             bindings = <&macro_tap &bt BT_SEL 1 &macro_tap &to MAC>;
         };
 
-        // Win (BT1) へ切り替え & Winレイヤー(2) へ
+        // Win (BT2) へ切り替え & Winレイヤー(2) へ
         my_sel_win: my_sel_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &bt BT_SEL 2 &macro_tap &to WIN>;
         };
+
+        // Win (BT2) へ切り替え & Winレイヤー(3) へ
+        my_sel_win2: my_sel_win2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 3 &macro_tap &to WIN>;
+        };
+
     };
 
     keymap {
@@ -42,8 +50,8 @@
             bindings = <
                 &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
                 &kp A &kp S &kp D &kp F &kp G &kp H &kp J &kp K &kp L &kp ENTER
-                &mt LSHIFT Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &lt 3 MINUS
-                &mt LCTRL LANG1 &lt 2 SPACE &lt 1 BACKSPACE &lt 5 LANG2
+                &mt LSHIFT Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &lt 4 MINUS
+                &mt LCMND LANG1 &lt 1 SPACE &lt 1 BACKSPACE &mt RSHIFT LANG2
             >;
         };
 
@@ -52,46 +60,56 @@
             bindings = <
                 &kp LPAR &kp RPAR &kp N7 &kp N8 &kp N9 &kp QMARK &kp EXCL &none &none &none
                 &kp PLUS &kp MINUS &kp N4 &kp N5 &kp N6 &none &none &none &none &none
-                &kp ASTERISK &kp SLASH &kp N1 &kp N2 &kp N3 &none &none &none &none &none
+                &kp ASTERISK &kp SLASH &kp N1 &kp N2 &kp N3 &none &none &kp LG(LEFT) &kp LG(RIGHT) &none
                 &kp EQUAL &kp N0 &none &none
             >;
         };
 
-        // Layer 2
+        // Layer 2: Windows用ベース
         layer_2 {
             bindings = <
-                &kp ESCAPE &none &none &none &none &none &none &kp UP_ARROW &none &none
-                &kp LA(TAB) &none &none &none &none &none &kp LEFT_ARROW &none &kp RIGHT_ARROW &none
-                &none &none &none &none &none &none &none &kp DOWN_ARROW &none &none
-                &none &none &none &none
+                &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
+                &kp A &kp S &kp D &kp F &kp G &kp H &kp J &kp K &kp L &kp ENTER
+                &mt LSHIFT Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &lt 4 MINUS
+                &mt LCTRL LANG1 &lt 3 SPACE &lt 5 BACKSPACE &mt RSHIFT LANG2
             >;
         };
 
-        // Layer 3: 設定 (BT切り替え)
+        // Layer 3
         layer_3 {
             bindings = <
-                &none &none &none &none &none &my_sel_mac &my_sel_mac2 &bt BT_SEL 3 &bt BT_SEL 4
+                &kp LPAR &kp RPAR &kp N7 &kp N8 &kp N9 &kp QMARK &kp EXCL &none &none &none
+                &kp PLUS &kp MINUS &kp N4 &kp N5 &kp N6 &none &none &none &none &none
+                &kp ASTERISK &kp SLASH &kp N1 &kp N2 &kp N3 &none &none &kp LA(LEFT) &kp LA(RIGHT) &none
+                &kp EQUAL &kp N0 &none &none
+            >;
+        };
+
+        // Layer 4: 設定 (BT切り替え+スクロールレイヤー)
+        layer_4 {
+            bindings = <
+                &none &none &none &none &none &my_sel_mac &my_sel_mac2 &my_sel_win &my_sel_win2 &bt BT_SEL 4
                 &none &none &none &none &none &bt BT_CLR &none &none &none &none
                 &none &none &none &none &none &none &none &none &none &none
                 &none &none &none &none
             >;
         };
 
-        // Layer 4: Windows用ベース
-        layer_4 {
-            bindings = <
-                &kp Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
-                &kp A &kp S &kp D &kp F &kp G &kp H &kp J &kp K &kp L &kp ENTER
-                &mt LSHIFT Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp PERIOD &lt 3 MINUS
-                &mt LCTRL INT_MUHENKAN &lt 2 SPACE &lt 1 BACKSPACE &lt 5 INT_HENKAN
-            >;
-        };
-
         // Layer 5
         layer_5 {
             bindings = <
+                &kp LPAR &kp RPAR &kp N7 &kp N8 &kp N9 &kp QMARK &kp EXCL &none &none &none
+                &kp PLUS &kp MINUS &kp N4 &kp N5 &kp N6 &none &none &none &none &none
+                &kp ASTERISK &kp SLASH &kp N1 &kp N2 &kp N3 &none &none &none &none &none
+                &kp EQUAL &kp N0 &none &none
+            >;
+        };
+
+        // Layer 6
+        layer_6 {
+            bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &kp LG(LEFT) &kp LG(RIGHT) &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &mkp LCLK &mkp RCLK &trans
                 &trans &trans &trans &trans
             >;
