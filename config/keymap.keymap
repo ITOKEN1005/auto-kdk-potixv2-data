@@ -14,18 +14,23 @@
 / {
     macros {
         // Mac (BT0) へ切り替え & Macレイヤー(0) へ
-        // 修正点: 全てのコマンドを1つの < > 内に記述します
         my_sel_mac: my_sel_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &bt BT_SEL 0 &macro_tap &to MAC>;
         };
 
-        // Win (BT1) へ切り替え & Winレイヤー(4) へ
+        my_sel_mac2: my_sel_mac2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 1 &macro_tap &to MAC>;
+        };
+
+        // Win (BT1) へ切り替え & Winレイヤー(2) へ
         my_sel_win: my_sel_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &bt BT_SEL 1 &macro_tap &to WIN>;
+            bindings = <&macro_tap &bt BT_SEL 2 &macro_tap &to WIN>;
         };
     };
 
@@ -65,7 +70,7 @@
         // Layer 3: 設定 (BT切り替え)
         layer_3 {
             bindings = <
-                &none &none &none &none &none &my_sel_mac &my_sel_win &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+                &none &none &none &none &none &my_sel_mac &my_sel_mac2 &bt BT_SEL 3 &bt BT_SEL 4
                 &none &none &none &none &none &bt BT_CLR &none &none &none &none
                 &none &none &none &none &none &none &none &none &none &none
                 &none &none &none &none
