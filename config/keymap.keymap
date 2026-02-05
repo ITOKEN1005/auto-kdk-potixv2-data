@@ -57,7 +57,7 @@
         // Layer 1
         layer_1 {
             bindings = <
-                &kp LPAR &kp RPAR &kp N7 &kp N8 &kp N9 &none &kp LC(TAB) &kp UP_ARROW &kp LC(LS(TAB)) &none
+                &kp LPAR &kp RPAR &kp N7 &kp N8 &kp N9 &none &kp LC(TAB) &kp UP_ARROW &kp LS(LC(TAB)) &none
                 &kp PLUS &kp MINUS &kp N4 &kp N5 &kp N6 &none &kp LEFT_ARROW &none &kp RIGHT_ARROW &none
                 &kp ASTERISK &kp SLASH &kp N1 &kp N2 &kp N3 &none &kp LG(LEFT) &kp DOWN_ARROW kp LG(RIGHT) &none
                 &kp EQUAL &kp N0 &kp DEL &none
