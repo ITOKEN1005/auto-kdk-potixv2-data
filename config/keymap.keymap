@@ -6,9 +6,9 @@
 // レイヤー番号の定義
 #define MAC   0
 #define L1    1
-#define L2    2
+#define WIN   2
 #define L3    3
-#define WIN   4
+#define L4    4
 #define L5    5
 
 / {
