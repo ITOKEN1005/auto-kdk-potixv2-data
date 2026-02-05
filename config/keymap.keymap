@@ -33,7 +33,7 @@
         sel_win: sel_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1>, <&to WIN>;
+            bindings = <&bt BT_SEL 1>, <&to L2>;
         };
     };
 
