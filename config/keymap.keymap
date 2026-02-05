@@ -3,37 +3,18 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/pointing.h>
 
-// レイヤー名の定義
-#define L0  0 //Mac用ベースレイヤー
-#define L1  1
-#define L2  2 //Windows用ベースレイヤー
-#define L3  3
-#define L4  4 //テンキーレイヤー
-#define L5  5 //記号レイヤー
-#define L6  6 //マウスレイヤー
 / {
     macros {
-        // BT 0番を選択し、Macレイヤーへ切り替え
-        sel_mac: sel_mac {
+        my_sel_mac: my_sel_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&bt BT_SEL 0>, <&to L0>;
         };
 
-
-        // BT 1番を選択し、Macレイヤーへ切り替え
-        sel_mac: sel_mac {
+        my_sel_win: my_sel_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1>, <&to L0>;
-        };
-
-       
-        // BT 2番を選択し、Windowsレイヤーへ切り替え
-        sel_win: sel_win {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1>, <&to L2>;
+            bindings = <&bt BT_SEL 2>, <&to L2>;
         };
     };
 
@@ -71,7 +52,7 @@
         // Layer 3: 設定・BT切り替え
         layer_3 {
             bindings = <
-                &none &none &none &none &none &sel_mac &sel_win &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+                &none &none &none &none &none &my_sel_mac &bt BT_SEL 1 &my_sel_win &bt BT_SEL 3 &bt BT_SEL 4
                 &none &none &none &none &none &bt BT_CLR &none &none &none &none
                 &none &none &none &none &none &none &none &none &none &none
                 &none &none &none &none
