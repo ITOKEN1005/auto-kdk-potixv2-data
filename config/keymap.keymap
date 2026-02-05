@@ -33,13 +33,11 @@
             bindings = <&macro_tap &bt BT_SEL 2 &macro_tap &to WIN>;
         };
 
-        // Win (BT2) へ切り替え & Winレイヤー(3) へ
         my_sel_win2: my_sel_win2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &bt BT_SEL 3 &macro_tap &to WIN>;
         };
-
     };
 
     keymap {
