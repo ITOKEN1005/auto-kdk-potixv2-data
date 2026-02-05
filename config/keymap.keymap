@@ -10,6 +10,7 @@
 #define L3    3
 #define L4    4
 #define L5    5
+#define L6    6
 
 / {
     macros {
